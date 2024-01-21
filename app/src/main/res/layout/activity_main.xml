@@ -9,35 +9,39 @@
 
     <TextView
         android:id="@+id/teamRedScore"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:fontFamily="sans-serif-medium"
+        android:focusable="true"
+        android:fontFamily="@font/bebasneue_regular"
         android:gravity="center"
         android:onClick="sumPoint"
-        android:text="0"
+        android:text="@string/start_score"
         android:textColor="#F44336"
-        android:textSize="100sp"
+        android:textSize="300sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UsingOnClickInXml,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/teamBlueScore"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:fontFamily="sans-serif-medium"
+        android:focusable="true"
+        android:fontFamily="@font/bebasneue_regular"
         android:gravity="center"
         android:onClick="sumPoint"
-        android:text="0"
+        android:text="@string/start_score"
         android:textColor="#03A9F4"
-        android:textSize="100sp"
+        android:textSize="300sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UsingOnClickInXml" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -50,33 +54,37 @@
         android:id="@+id/buttonContainer"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginStart="122dp"
+        android:layout_marginEnd="123dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/teamBlueScore"
-        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintStart_toEndOf="@+id/teamRedScore"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
             android:id="@+id/resetButton"
             android:layout_width="fill_parent"
             android:layout_height="60dp"
             android:backgroundTint="#FFFFFF"
-            android:contentDescription="Reset"
+            android:contentDescription="@string/reset"
             android:minWidth="0dp"
             android:onClick="resetPoints"
-            android:src="@drawable/restart" />
+            android:src="@drawable/restart"
+            tools:ignore="UsingOnClickInXml" />
 
         <ImageButton
             android:id="@+id/switchButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
-            android:contentDescription="Switch"
+            android:contentDescription="@string/switchh"
             android:minWidth="0dp"
             android:onClick="switchPoints"
-            android:src="@drawable/swap" />
+            android:src="@drawable/swap"
+            tools:ignore="UsingOnClickInXml" />
 
     </LinearLayout>
 

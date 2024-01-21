@@ -1,30 +1,50 @@
 package com.somoel.voleyballscorer
 
 import android.content.pm.ActivityInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
+
+@Suppress("DEPRECATION", "UNUSED_PARAMETER")
 class MainActivity : AppCompatActivity() {
 
-
+    // At app invocation
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        // Start configs
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE // Set landscape mode
+        // Set fullscreen mode
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 
+        // Scores
         val tbview: TextView = findViewById(R.id.teamBlueScore)
         val trview: TextView = findViewById(R.id.teamRedScore)
 
+        // Ideal screen size for score
+        val density = resources.displayMetrics.density
+        val textHeightPixels = resources.displayMetrics.heightPixels * 0.95f
+        val textWidthPixels = resources.displayMetrics.widthPixels * 0.5f
+        val textSizeInSp = textHeightPixels / density
 
-        setLongClickListener(tbview)
-        setLongClickListener(trview)
+        for (tview in listOf(trview, tbview)) {
+            tview.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSizeInSp)
+            tview.width = textWidthPixels.toInt()
+
+            setLongClickListener(tview) // Long Click Listener for minus point
+        }
 
     }
 
+    /*
+    LongClickListener for rest score
+     */
     private fun setLongClickListener(textView: TextView) {
         textView.setOnLongClickListener {
             restPoint(textView)
@@ -32,48 +52,53 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*
+    Sum a point in the counter
+     */
     fun sumPoint(view: View) {
         if (view is TextView) {
-            val cadenaActual: String = view.text.toString()
+            val actualString: String = view.text.toString()
 
             try {
-                var valorActual = cadenaActual.toInt()
-                valorActual += 1
+                var actualValue = actualString.toInt()
 
-                // Actualiza el TextView con el nuevo valor
-                view.text = valorActual.toString()
+                if (actualValue < 99)
+                    actualValue += 1
+
+                view.text = actualValue.toString()
             } catch (e: NumberFormatException) {
-                // Manejar la excepción si la cadena no puede ser convertida a entero
+
                 e.printStackTrace()
             }
         }
     }
 
-    fun restPoint(textView: TextView) {
-        val cadenaActual: String = textView.text.toString()
+    /* Rest a point for long click */
+    private fun restPoint(textView: TextView) {
+        val actualString: String = textView.text.toString()
 
         try {
-            var valorActual = cadenaActual.toInt()
-            if (valorActual > 0) {
-                valorActual -= 1
+            var actualValue = actualString.toInt()
+            if (actualValue > 0) {
+                actualValue -= 1
             }
 
-            // Actualiza el TextView con el nuevo valor
-            textView.text = valorActual.toString()
+            textView.text = actualValue.toString()
         } catch (e: NumberFormatException) {
-            // Manejar la excepción si la cadena no puede ser convertida a entero
             e.printStackTrace()
         }
     }
 
-    fun resetPoints(view: View){
+    /* Reset points button */
+    fun resetPoints(view: View) {
         val tbview: TextView = findViewById(R.id.teamBlueScore)
         val trview: TextView = findViewById(R.id.teamRedScore)
         tbview.text = "0"
         trview.text = "0"
     }
 
-    fun switchPoints(view: View){
+    /* Switch side button */
+    fun switchPoints(view: View) {
         val tbview: TextView = findViewById(R.id.teamBlueScore)
         val trview: TextView = findViewById(R.id.teamRedScore)
         val temp: String = tbview.text.toString()
