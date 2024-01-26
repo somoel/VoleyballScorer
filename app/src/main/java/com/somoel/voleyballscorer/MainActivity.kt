@@ -24,20 +24,37 @@ class MainActivity : AppCompatActivity() {
                     View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 
         // Scores
-        val tbview: TextView = findViewById(R.id.teamBlueScore)
-        val trview: TextView = findViewById(R.id.teamRedScore)
+        val t1Score: TextView = findViewById(R.id.team1Score)
+        val t2Score: TextView = findViewById(R.id.team2Score)
+        t1Score.tag = "scores"
+        t2Score.tag = "scores"
+
+        // Sets
+        val t1Set: TextView = findViewById(R.id.team1Set)
+        val t2Set: TextView = findViewById(R.id.team2Set)
+        t1Set.tag = "sets"
+        t2Set.tag = "sets"
 
         // Ideal screen size for score
         val density = resources.displayMetrics.density
-        val textHeightPixels = resources.displayMetrics.heightPixels * 0.95f
-        val textWidthPixels = resources.displayMetrics.widthPixels * 0.5f
-        val textSizeInSp = textHeightPixels / density
+        val scoreHeightPixels = resources.displayMetrics.heightPixels * 0.75f
+        val scoreWidthPixels = resources.displayMetrics.widthPixels * 0.4f
+        val scoreSizeInSp = scoreHeightPixels / density
+        val setSizeInSp = scoreSizeInSp / 2
 
-        for (tview in listOf(trview, tbview)) {
-            tview.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSizeInSp)
-            tview.width = textWidthPixels.toInt()
+        for (tview in listOf(t2Score, t1Score)) {
+            tview.setTextSize(TypedValue.COMPLEX_UNIT_SP, scoreSizeInSp)
+            tview.width = scoreWidthPixels.toInt()
 
-            setLongClickListener(tview) // Long Click Listener for minus point
+        }
+
+        for (tview in listOf(t1Set, t2Set)) {
+            tview.setTextSize(TypedValue.COMPLEX_UNIT_SP, setSizeInSp)
+        }
+
+
+        for (tview in listOf(t2Score, t1Score, t1Set, t2Set)) {
+            setLongClickListener(tview)
         }
 
     }
@@ -62,8 +79,11 @@ class MainActivity : AppCompatActivity() {
             try {
                 var actualValue = actualString.toInt()
 
-                if (actualValue < 99)
+                if (view.tag == "scores" && actualValue < 99) {
                     actualValue += 1
+                } else if (view.tag == "sets" && actualValue < 7) {
+                    actualValue += 1
+                }
 
                 view.text = actualValue.toString()
             } catch (e: NumberFormatException) {
@@ -91,18 +111,37 @@ class MainActivity : AppCompatActivity() {
 
     /* Reset points button */
     fun resetPoints(view: View) {
-        val tbview: TextView = findViewById(R.id.teamBlueScore)
-        val trview: TextView = findViewById(R.id.teamRedScore)
-        tbview.text = "0"
-        trview.text = "0"
+        val tbview: TextView = findViewById(R.id.team2Score)
+        val trview: TextView = findViewById(R.id.team1Score)
+        val t1SetView: TextView = findViewById(R.id.team1Set)
+        val t2SetView: TextView = findViewById(R.id.team2Set)
+        for (textview in listOf(tbview, trview, t1SetView, t2SetView)) {
+            textview.text = "0"
+        }
     }
 
     /* Switch side button */
     fun switchPoints(view: View) {
-        val tbview: TextView = findViewById(R.id.teamBlueScore)
-        val trview: TextView = findViewById(R.id.teamRedScore)
-        val temp: String = tbview.text.toString()
-        tbview.text = trview.text.toString()
-        trview.text = temp
+        val t1Score: TextView = findViewById(R.id.team1Score)
+        val t2Score: TextView = findViewById(R.id.team2Score)
+        val t1Set: TextView = findViewById(R.id.team1Set)
+        val t2Set: TextView = findViewById(R.id.team2Set)
+        val t1Color: Int = t1Score.currentTextColor
+        val t2Color: Int = t2Score.currentTextColor
+
+        val tempScore: String = t1Score.text.toString()
+        t1Score.text = t2Score.text.toString()
+        t2Score.text = tempScore
+
+        val tempSet: String = t1Set.text.toString()
+        t1Set.text = t2Set.text.toString()
+        t2Set.text = tempSet
+
+        val tempColor: Int = t1Color
+        t1Score.setTextColor(t2Color)
+        t1Set.setTextColor(t2Color)
+        t2Score.setTextColor(tempColor)
+        t2Set.setTextColor(tempColor)
+
     }
 }

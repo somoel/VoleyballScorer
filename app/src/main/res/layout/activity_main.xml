@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/teamRedScore"
+        android:id="@+id/team1Score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -17,16 +17,46 @@
         android:gravity="center"
         android:onClick="sumPoint"
         android:text="@string/start_score"
-        android:textColor="#F44336"
+        android:textColor="@color/team1"
         android:textSize="300sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/team1Set"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UsingOnClickInXml,DuplicateSpeakableTextCheck" />
+        tools:ignore="UsingOnClickInXml,DuplicateSpeakableTextCheck,VisualLintBounds" />
 
     <TextView
-        android:id="@+id/teamBlueScore"
+        android:id="@+id/team2Set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:fontFamily="@font/bebasneue_regular"
+        android:onClick="sumPoint"
+        android:text="@string/start_score"
+        android:textColor="@color/team2"
+        android:textSize="150sp"
+        app:layout_constraintStart_toEndOf="@+id/buttonContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true"
+        tools:ignore="UsingOnClickInXml" />
+
+    <TextView
+        android:id="@+id/team1Set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:fontFamily="@font/bebasneue_regular"
+        android:onClick="sumPoint"
+        android:text="@string/start_score"
+        android:textColor="@color/team1"
+        android:textSize="150sp"
+        app:layout_constraintEnd_toStartOf="@+id/buttonContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true"
+        tools:ignore="UsingOnClickInXml" />
+
+    <TextView
+        android:id="@+id/team2Score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -35,13 +65,13 @@
         android:gravity="center"
         android:onClick="sumPoint"
         android:text="@string/start_score"
-        android:textColor="#03A9F4"
+        android:textColor="@color/team2"
         android:textSize="300sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintStart_toEndOf="@+id/team2Set"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml,VisualLintBounds" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -59,8 +89,8 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/teamBlueScore"
-        app:layout_constraintStart_toEndOf="@+id/teamRedScore"
+        app:layout_constraintEnd_toStartOf="@+id/team2Score"
+        app:layout_constraintStart_toEndOf="@+id/team1Score"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
