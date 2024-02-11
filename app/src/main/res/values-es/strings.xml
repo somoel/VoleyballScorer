@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="reset">Reiniciar</string>
+    <string name="switchh">Cambiar de lado</string>
+    <string name="settings">Ajustes</string>
+    <string name="counting_header">Conteo</string>
+    <string name="confirms_header">Confirmaciones</string>
+    <string name="score_limit_title">Límite de puntaje</string>
+    <string name="set_limit_title">Límite de sets</string>
+    <string name="manual_add_set_confirm_title">Confirmar para sumar set manualmente</string>
+    <string name="reset_confirm_title">Confirmar antes de reiniciar</string>
+    <string name="auto_set_add_title">Agregar sets automáticamente</string>
+    <string name="auto_set_add_summary">Añade un set cuando el equipo alcance el límite de puntuación y lleve una ventaja de dos puntos</string>
+</resources>

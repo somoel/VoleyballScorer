@@ -1,11 +1,15 @@
 package com.somoel.voleyballscorer
 
+import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.Vibrator
+
 
 
 @Suppress("DEPRECATION", "UNUSED_PARAMETER")
@@ -81,16 +85,49 @@ class MainActivity : AppCompatActivity() {
 
                 if (view.tag == "scores" && actualValue < 99) {
                     actualValue += 1
-                } else if (view.tag == "sets" && actualValue < 7) {
-                    actualValue += 1
+                    vibratePhone(false)
                 }
 
                 view.text = actualValue.toString()
+
+                checkSet()
             } catch (e: NumberFormatException) {
 
                 e.printStackTrace()
             }
         }
+    }
+
+    private fun vibratePhone(isLong: Boolean) {
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        val vibrationValue = if (isLong) 500L else 50L
+
+
+        val pattern = longArrayOf(0, vibrationValue)
+        vibrator.vibrate(pattern, -1)
+    }
+
+
+    private fun checkSet(): Boolean {
+        val t1Score: TextView = findViewById(R.id.team1Score)
+        val t2Score: TextView = findViewById(R.id.team2Score)
+        val t1Set: TextView = findViewById(R.id.team1Set)
+        val t2Set: TextView = findViewById(R.id.team2Set)
+        val t1ScoreInt: Int = t1Score.text.toString().toInt()
+        val t2ScoreInt: Int = t2Score.text.toString().toInt()
+
+
+
+        if ((t1ScoreInt > t2ScoreInt) && (t1ScoreInt >= 30)) {
+            t1Set.text = (t1Set.text.toString().toInt() + 1).toString()
+            vibratePhone(true)
+            return true
+        } else if ((t2ScoreInt > t1ScoreInt) && (t2ScoreInt >= 30)) {
+            t2Set.text = (t2Set.text.toString().toInt() + 1).toString()
+            vibratePhone(true)
+            return true
+        }
+        return false
     }
 
     /* Rest a point for long click */
@@ -121,7 +158,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /* Switch side button */
-    fun switchPoints(view: View) {
+    fun switchPoints(view: View?) {
         val t1Score: TextView = findViewById(R.id.team1Score)
         val t2Score: TextView = findViewById(R.id.team2Score)
         val t1Set: TextView = findViewById(R.id.team1Set)
@@ -143,5 +180,10 @@ class MainActivity : AppCompatActivity() {
         t2Score.setTextColor(tempColor)
         t2Set.setTextColor(tempColor)
 
+    }
+
+    fun openSettings(view: View) {
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
     }
 }

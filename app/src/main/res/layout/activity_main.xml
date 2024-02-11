@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:fontFamily="@font/bebasneue_regular"
+        android:fontFamily="@font/rubik_medium"
         android:gravity="center"
         android:onClick="sumPoint"
         android:text="@string/start_score"
@@ -30,14 +30,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:focusable="true"
         android:fontFamily="@font/bebasneue_regular"
         android:onClick="sumPoint"
         android:text="@string/start_score"
         android:textColor="@color/team2"
         android:textSize="150sp"
+        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/buttonContainer"
         app:layout_constraintTop_toTopOf="parent"
-        android:focusable="true"
         tools:ignore="UsingOnClickInXml" />
 
     <TextView
@@ -45,14 +46,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:focusable="true"
         android:fontFamily="@font/bebasneue_regular"
         android:onClick="sumPoint"
         android:text="@string/start_score"
         android:textColor="@color/team1"
         android:textSize="150sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/buttonContainer"
         app:layout_constraintTop_toTopOf="parent"
-        android:focusable="true"
         tools:ignore="UsingOnClickInXml" />
 
     <TextView
@@ -61,7 +63,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:fontFamily="@font/bebasneue_regular"
+        android:fontFamily="@font/rubik_medium"
         android:gravity="center"
         android:onClick="sumPoint"
         android:text="@string/start_score"

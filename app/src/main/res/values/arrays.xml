@@ -1,0 +1,39 @@
+<resources>
+    <!-- Score Limit Preference -->
+    <string-array name="score_limit_entries">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>50</item>
+    </string-array>
+    <string-array name="score_limit_values">
+        <item>five</item>
+        <item>ten</item>
+        <item>fifteen</item>
+        <item>twenty</item>
+        <item>twenty_five</item>
+        <item>thirty</item>
+        <item>fifty</item>
+    </string-array>
+
+    <!-- Set Limit Preference -->
+    <string-array name="set_limit_entries">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="set_limit_values">
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+        <item>seven</item>
+    </string-array>
+</resources>
